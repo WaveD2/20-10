@@ -1,0 +1,25 @@
+{
+  "cleanUrls": false,
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "u"
+        }
+      ],
+      "destination": "/api/card"
+    },
+    {
+      "source": "/index.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "u"
+        }
+      ],
+      "destination": "/api/card"
+    }
+  ]
+}

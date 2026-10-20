@@ -24,9 +24,12 @@ if (!fs.existsSync(shareDir)) {
   fs.mkdirSync(shareDir, { recursive: true });
 }
 
+const DOMAIN = 'https://20-10-green-seven.vercel.app';
+
 function makeHtml(item, isSubdir = false) {
   const prefix = isSubdir ? '../' : './';
-  const imgUrl = prefix + item.image.replace(/^\.\//, '');
+  // Dùng URL tuyệt đối cho thẻ Open Graph theo chuẩn Facebook/Zalo
+  const imgUrl = `${DOMAIN}/${item.image.replace(/^\.\//, '')}`;
   const targetUrl = prefix + 'index.html?u=' + encodeURIComponent(item.code);
   const firstLine = item.message
     ? item.message.split('\n')[0].replace(/"/g, '&quot;')

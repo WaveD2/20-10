@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Quản Lý Mã 8 Ký Tự & Link Thiệp 20/10</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./recipients.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #fff7f9 0%, #faedf1 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #552737;
+      margin: 0;
+      padding: 30px 20px 80px;
+      line-height: 1.6;
+    }
+    .admin-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .admin-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    .admin-header h1 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      color: #92385b;
+      margin: 0 0 8px;
+    }
+    .admin-header p {
+      color: #8c5d6e;
+      margin: 0;
+      font-size: 15px;
+    }
+    .security-notice {
+      background: #eef7ed;
+      border: 1px solid #c3e6cb;
+      border-radius: 14px;
+      padding: 14px 20px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: #1e4620;
+      font-size: 14px;
+    }
+    .security-notice-icon {
+      font-size: 24px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 22px;
+      margin-bottom: 40px;
+    }
+    .person-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 8px 24px rgba(146, 56, 91, 0.08);
+      border: 1px solid #f6dbe4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .person-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(146, 56, 91, 0.14);
+    }
+    .person-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #f3cdd9;
+      box-shadow: 0 4px 12px rgba(118, 54, 77, 0.15);
+      margin-bottom: 12px;
+    }
+    .person-name {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: bold;
+      color: #76364d;
+      margin: 0 0 8px;
+    }
+    .code-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+      width: 100%;
+    }
+    .code-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fdf5f8;
+      padding: 6px 12px;
+      border-radius: 10px;
+      border: 1px solid #f8dce5;
+      font-size: 13px;
+    }
+    .code-tag {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-weight: 700;
+      color: #a42c5b;
+      letter-spacing: 0.5px;
+    }
+    .link-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .btn-copy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #fff0f5;
+      color: #87284f;
+      border: 1px solid #f2cad9;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-copy:hover {
+      background: #a42c5b;
+      color: #ffffff;
+      border-color: #a42c5b;
+    }
+    .btn-copy.success {
+      background: #2e7d32;
+      color: #ffffff;
+      border-color: #2e7d32;
+    }
+    .btn-preview {
+      background: #fdfdfd;
+      color: #666;
+      border: 1px dashed #d8b8c4;
+    }
+    .btn-preview:hover {
+      background: #fbf0f4;
+      color: #92385b;
+      border-color: #92385b;
+    }
+    .guide-box {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 26px 30px;
+      box-shadow: 0 6px 20px rgba(146, 56, 91, 0.06);
+      border: 1px solid #fae1eb;
+      margin-top: 25px;
+    }
+    .guide-box h2 {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #92385b;
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .guide-box ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+    .guide-box li {
+      margin-bottom: 10px;
+      color: #633c4a;
+    }
+    .guide-box code {
+      background: #faedf1;
+      color: #a42c5b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+    .back-link {
+      color: #92385b;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    .test-box {
+      background: #fff8eb;
+      border: 1px solid #ffe1a6;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 30px;
+    }
+    .test-box h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: #8c5b00;
+    }
+    .test-box p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      color: #664600;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <div class="top-nav">
+      <a href="./index.html" class="back-link">← Xem trang thiệp mặc định</a>
+      <span style="font-size: 13px; color: #9c6c7d;">Bảo Mật Mã 8 Ký Tự · 20/10</span>
+    </div>
+
+    <header class="admin-header">
+      <h1>Hệ Thống Mã Hóa 8 Ký Tự Thông Minh</h1>
+      <p>Chống đoán mò, chống lộ thông tin người khác. Nhập sai hoặc sửa URL sẽ tự động hiện ảnh mặc định <code>cancan.png</code>.</p>
+    </header>
+
+    <div class="security-notice">
+      <span class="security-notice-icon">🛡️</span>
+      <div>
+        <strong>Cơ chế bảo mật chống nhầm lẫn:</strong> Hệ thống <em>chỉ mở khóa đúng thiệp</em> khi nhập chính xác 100% mã 8 ký tự. Nếu bất kỳ ai tò mò thử đổi ký tự trên URL (ví dụ sửa 1 chữ cái), trang sẽ lập tức rơi về thiệp mặc định với ảnh <strong>cancan.png</strong> và tên <strong>"bạn"</strong>.
+      </div>
+    </div>
+
+    <div class="test-box">
+      <h3>🧪 Thử nghiệm kiểm tra độ bảo mật:</h3>
+      <p>Bấm thử các link dưới đây để kiểm chứng:</p>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <a class="btn-copy" style="background:#fff; border-color:#d49b00; color:#8c5b00;" href="./index.html" target="_blank">
+          1. Vào trang gốc (không kèm mã) ➔ Hiện cancan.png
+        </a>
+        <a class="btn-copy" style="background:#fff; border-color:#d49b00; color:#8c5b00;" href="./index.html?u=12345678" target="_blank">
+          2. Gõ sai mã (vd: ?u=12345678) ➔ Hiện cancan.png
+        </a>
+        <a class="btn-copy" style="background:#fff; border-color:#d49b00; color:#8c5b00;" href="./index.html?u=chi" target="_blank">
+          3. Cố tình gõ ?u=chi ➔ Bị chặn, hiện cancan.png
+        </a>
+      </div>
+    </div>
+
+    <div class="card-grid" id="recipientsGrid">
+      <!-- Tự động sinh từ recipients.json -->
+    </div>
+
+    <div class="guide-box">
+      <h2>💡 Giải Thích Mã Hóa 8 Ký Tự</h2>
+      <ul>
+        <li><strong>Chuẩn 8 ký tự thuật toán (Web A):</strong> Mã 8 ký tự hex lấy từ 8 chữ số đầu của thuật toán MD5 (Chi = <code>1e6086b7</code>, Thanh = <code>8478e2bd</code>, Trinh = <code>28415172</code>, Tú = <code>b6b4ce6d</code>). Hoàn toàn không thể đoán mò!</li>
+        <li><strong>Chuẩn 8 ký tự ý nghĩa (Tùy chọn):</strong> Bạn cũng có thể dùng mã 8 ký tự có ý nghĩa được gán sẵn: Chi = <code>chi2010v</code>, Thanh = <code>thanh20k</code>, Trinh = <code>trinh20d</code>, Tú = <code>tu2010vn</code>.</li>
+        <li><strong>Gửi qua Zalo/Facebook:</strong> Dùng link file tĩnh 8 ký tự (ví dụ: <code>1e6086b7.html</code>) để mạng xã hội đọc được thẻ <code>meta og:image</code> và hiển thị ảnh của người đó khi gửi tin nhắn!</li>
+        <li><strong>Tùy biến nhanh:</strong> Bạn có thể mở [recipients.json](file:///home/waved/Downloads/20-10/recipients.json) để đổi bất kỳ mã 8 ký tự nào khác. Sau khi sửa, chạy lệnh <code>node generate-share.js</code> để đồng bộ.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const grid = document.getElementById('recipientsGrid');
+    const data = window.RECIPIENTS_DATA || { recipients: [] };
+
+    data.recipients.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'person-card';
+
+      const directUrl = `${window.location.origin}${window.location.pathname.replace(/generator\.html$/, '')}index.html?u=${item.code}`;
+      const shareUrl = `${window.location.origin}${window.location.pathname.replace(/generator\.html$/, '')}${item.code}.html`;
+
+      const aliasStr = Array.isArray(item.aliases) && item.aliases.length > 0
+        ? `<div class="code-badge-row"><span style="color:#777">Mã ý nghĩa (8 ký tự):</span> <span class="code-tag">${item.aliases[0]}</span></div>`
+        : '';
+
+      card.innerHTML = `
+        <img class="person-avatar" src="${item.image}" alt="${item.name}" style="object-position: ${item.objectPosition || 'center'}">
+        <h3 class="person-name">${item.name}</h3>
+        <div class="code-badges">
+          <div class="code-badge-row">
+            <span style="color:#777">Mã bí mật (8 ký tự):</span>
+            <span class="code-tag">${item.code}</span>
+          </div>
+          ${aliasStr}
+        </div>
+        <div class="link-group">
+          <button class="btn-copy" onclick="copyText('${shareUrl}', this)" title="Dùng link này khi gửi qua Zalo/Facebook để hiện ảnh đại diện">
+            💌 Chép Link Gửi Zalo/FB
+          </button>
+          <button class="btn-copy" onclick="copyText('${directUrl}', this)" title="Link trực tiếp vào trang thiệp">
+            📋 Chép Link Trực Tiếp
+          </button>
+          <a class="btn-copy btn-preview" href="${directUrl}" target="_blank">
+            👁️ Mở Xem Thử Thiệp
+          </a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    function copyText(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.classList.add('success');
+        btn.innerHTML = '✓ Đã sao chép!';
+        setTimeout(() => {
+          btn.classList.remove('success');
+          btn.innerHTML = originalText;
+        }, 2000);
+      }).catch(() => {
+        prompt('Sao chép link này:', text);
+      });
+    }
+  </script>
+</body>
+</html>
